@@ -14,6 +14,8 @@ project
 ```
 
 The Library folder in Penguins is not included due to its big size.
+Unity Editor will import necessary libraries when opening Penguin project.
+
 
 ### Changes in ML-Agents after 0.13
 
