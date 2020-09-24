@@ -34,12 +34,124 @@ behaviors:
         strength: 1.0
         gamma: 0.99
 
-curriculum:
-  PenguinLearning:
-    measure: reward
-    thresholds: [-0.1, 0.7, 1.7, 1.7, 1.7, 2.7, 2.7]
-    min_lesson_length: 80
-    signal_smoothing: true
-    parameters:
-      fish_speed: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5]
-      feed_radius: [6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.5, 0.2]
+environment_parameters:
+  fisth_speed:
+    curriculum: 
+      - name: Lesson0
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: -0.1
+      - name: Lesson1
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 0.7
+      - name: Lesson2
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 1.7
+      - name: Lesson3
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 1.7
+      - name: Lesson4
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 1.7
+      - name: Lesson5
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 2.7
+      - name: Lesson6
+        value: 0.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 2.7
+      - name: Lesson7
+        value: 0.5
+  feed_radius:
+    curriculum: 
+      - name: Lesson0
+        value: 6.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: -0.1
+      - name: Lesson1
+        value: 5.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 0.7
+      - name: Lesson2
+        value: 4.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 1.7
+      - name: Lesson3
+        value: 3.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 1.7
+      - name: Lesson4
+        value: 2.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 1.7
+      - name: Lesson5
+        value: 1.0
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 2.7
+      - name: Lesson6
+        value: 0.5
+        completion_criteria:
+          measure: reward
+          behavior: PenguinLearning
+          signal_smoothing: true
+          min_lesson_length: 80
+          threshold: 2.7
+      - name: Lesson7
+        value: 0.2
