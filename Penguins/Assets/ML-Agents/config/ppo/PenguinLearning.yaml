@@ -35,7 +35,7 @@ behaviors:
         gamma: 0.99
 
 environment_parameters:
-  fisth_speed:
+  fish_speed:
     curriculum: 
       - name: Lesson0
         value: 0.0
