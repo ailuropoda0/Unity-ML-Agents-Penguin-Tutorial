@@ -27,12 +27,16 @@ Then, click the play button in the Editor.
 ## Changes in ML-Agents after 0.13
 
 ### [release 7 to release 12]
+It is enabled to use both continuous and discrete actions on a same agent. The type(float array) of vector actions is changed to *ActionBuffers*. The deprecated methods(*Heuristic*, *OnActionReceived*) with a float array argument are still available, but they may not be compatible with a continous and discrete action space.
+
 - Agent.Heuristic(float[]) -> Agent.Heuristic(in ActionBuffers)
 - Agent.OnActionReceived(float[]) -> Agent.OnActionReceived(ActionBuffers)
 - Agent.CollectDiscreteActionMasks() -> Agent.WriteDiscreteActionMask()
 - Agent.GetAction() -> Agent.GetStoredActionBuffers()
 
 To use *ActionBuffers*, *Unity.MLAgents.Actuators* should be imported.
+
+PyTorch trainers become the default trainer instead of TensorFlow. TensorFlow trainer is still available by adding ```--tensorflow``` in the CLI, or adding ```framework: tensorflow``` in the configuration file(YAML).
 
 ### [release 3 to release 7]
 The configuration file format has been updated. Parameter randomization and curriculum are integrated into 'environment parameters'. It becomes possible to define a curriculum in detail. Curriculums should be set on each variable.
