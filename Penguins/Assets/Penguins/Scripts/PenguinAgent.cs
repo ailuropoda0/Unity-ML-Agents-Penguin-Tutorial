@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Unity.MLAgents;
+using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
 public class PenguinAgent : Agent
@@ -37,18 +38,18 @@ public class PenguinAgent : Agent
     /// Perform actions based on a vector of numbers
     /// </summary>
     /// <param name="vectorAction">The list of actions to take</param>
-    public override void OnActionReceived(float[] vectorAction)
+    public override void OnActionReceived(ActionBuffers actions)
     {
         // Convert the first action to forward movement
-        float forwardAmount = vectorAction[0];
+        float forwardAmount = actions.DiscreteActions[0];
 
         // Convert the second action to turning left or right
         float turnAmount = 0f;
-        if (vectorAction[1] == 1f)
+        if (actions.DiscreteActions[1] == 1f)
         {
             turnAmount = -1f;
         }
-        else if (vectorAction[1] == 2f)
+        else if (actions.DiscreteActions[1] == 2f)
         {
             turnAmount = 1f;
         }
@@ -67,29 +68,30 @@ public class PenguinAgent : Agent
     /// Behavior Type to "Heuristic Only" in the Behavior Parameters inspector.
     /// </summary>
     /// <returns>A vectorAction array of floats that will be passed into <see cref="AgentAction(float[])"/></returns>
-    public override void Heuristic(float[] actionsOut)
+    public override void Heuristic(in ActionBuffers actionsOut)
     {
-        float forwardAction = 0f;
-        float turnAction = 0f;
+        int forwardAction = 0;
+        int turnAction = 0;
         if (Input.GetKey(KeyCode.W))
         {
             // move forward
-            forwardAction = 1f;
+            forwardAction = 1;
         }
         if (Input.GetKey(KeyCode.A))
         {
             // turn left
-            turnAction = 1f;
+            turnAction = 1;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             // turn right
-            turnAction = 2f;
+            turnAction = 2;
         }
 
         // Put the actions into an array
-        actionsOut[0] = forwardAction;
-        actionsOut[1] = turnAction;
+        var discreteActionsOut = actionsOut.DiscreteActions;
+        discreteActionsOut[0] = forwardAction;
+        discreteActionsOut[1] = turnAction;
     }
 
     /// <summary>
